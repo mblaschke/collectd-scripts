@@ -28,7 +28,7 @@ extract_stat() {
 
 NODE_STATS_JSON=$(cat "${NODES_JSON}" | jq -c ".nodes[] | select(.nodeinfo.node_id == \"$NODE_ID\") | .statistics")
 
-extract_stat "loadavg" "uptime"
+extract_stat "uptime" "uptime"
 extract_stat "loadavg" "load"
 extract_stat "clients" "users"
 extract_stat "memory_usage" "percent-memory"
