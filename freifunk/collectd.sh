@@ -13,7 +13,7 @@ INTERVAL="${COLLECTD_INTERVAL:-60}"
 NODE_ID=$1
 
 if [[ "$NODE_ID" == "update" ]]; then
-	wget -O"${NODES_JSON}.tmp" "$NODES_URL"
+	wget -O"${NODES_JSON}.tmp" "$NODES_URL" &> /dev/null
 	mv "${NODES_JSON}.tmp" "${NODES_JSON}"
 	exit 0
 fi
@@ -21,14 +21,15 @@ fi
 
 extract_stat() {
 	VAR_NAME=$1
+	COLLECTD_NODE=$2
 	VAR_VALUE=$(echo "$NODE_STATS_JSON" | jq ".$VAR_NAME")
-	echo "PUTVAL \"freifunk/${HOSTNAME}/gauge-$VAR_NAME\" interval=$INTERVAL N:$VAR_VALUE"
+	echo "PUTVAL \"freifunk/${HOSTNAME}/${COLLECTD_NODE}\" interval=${INTERVAL} N:${VAR_VALUE}"
 }
 
 NODE_STATS_JSON=$(cat "${NODES_JSON}" | jq -c ".nodes[] | select(.nodeinfo.node_id == \"$NODE_ID\") | .statistics")
-extract_stat "uptime"
-extract_stat "loadavg"
-extract_stat "clients"
-extract_stat "memory_usage"
-extract_stat "rootfs_usage"
-extract_stat "clients"
+
+extract_stat "loadavg" "uptime"
+extract_stat "loadavg" "load"
+extract_stat "clients" "users"
+extract_stat "memory_usage" "percent-memory"
+extract_stat "rootfs_usage" "percent-rootfs"
