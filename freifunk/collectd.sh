@@ -22,7 +22,7 @@ fi
 extract_stat() {
 	VAR_NAME=$1
 	VAR_VALUE=$(echo "$NODE_STATS_JSON" | jq ".$VAR_NAME")
-	echo "PUTVAL \"$HOSTNAME/synology/gauge-$VAR_NAME\" interval=$INTERVAL N:$VAR_VALUE"
+	echo "PUTVAL \"freifunk/${HOSTNAME}/gauge-$VAR_NAME\" interval=$INTERVAL N:$VAR_VALUE"
 }
 
 NODE_STATS_JSON=$(cat "${NODES_JSON}" | jq -c ".nodes[] | select(.nodeinfo.node_id == \"$NODE_ID\") | .statistics")
