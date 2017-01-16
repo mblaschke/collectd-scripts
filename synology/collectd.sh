@@ -25,7 +25,7 @@ snmp_simple_value() {
     SNMP_NODE=$2
 
     value=$(fetch_snmp $SNMP_NODE)
-    if [[ "$value" -gt 0 ]]; then
+    if [[ "$value" != "" ]]; then
         send_data "$STATS_NODE" "$value"
     fi
 }
