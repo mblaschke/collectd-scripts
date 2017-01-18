@@ -218,6 +218,10 @@
               "refId": "A",
               "target": "alias(keepLastValue(smartSummarize(sumSeries(freifunk.node-$ffs_routers.users), '30m', 'max'), 100), 'users')",
               "textEditor": true
+            },
+            {
+              "refId": "B",
+              "target": "freifunk.node-60e327f23138.lo.select metric"
             }
           ],
           "thresholds": [],
@@ -345,7 +349,7 @@
       "titleSize": "h6"
     },
     {
-      "collapse": false,
+      "collapse": true,
       "height": 276,
       "panels": [
         {
@@ -732,7 +736,7 @@
         }
       ],
       "repeat": null,
-      "repeatIteration": 1484768149155,
+      "repeatIteration": 1484778107802,
       "repeatRowId": 4,
       "showTitle": true,
       "title": "$ffs_routers",
@@ -929,7 +933,7 @@
         }
       ],
       "repeat": null,
-      "repeatIteration": 1484768149155,
+      "repeatIteration": 1484778107802,
       "repeatRowId": 4,
       "showTitle": true,
       "title": "$ffs_routers",
@@ -1126,7 +1130,7 @@
         }
       ],
       "repeat": null,
-      "repeatIteration": 1484768149155,
+      "repeatIteration": 1484778107802,
       "repeatRowId": 4,
       "showTitle": true,
       "title": "$ffs_routers",
@@ -1323,7 +1327,7 @@
         }
       ],
       "repeat": null,
-      "repeatIteration": 1484768149155,
+      "repeatIteration": 1484778107802,
       "repeatRowId": 4,
       "showTitle": true,
       "title": "$ffs_routers",
@@ -1520,7 +1524,7 @@
         }
       ],
       "repeat": null,
-      "repeatIteration": 1484768149155,
+      "repeatIteration": 1484778107802,
       "repeatRowId": 4,
       "showTitle": true,
       "title": "$ffs_routers",
@@ -1717,7 +1721,7 @@
         }
       ],
       "repeat": null,
-      "repeatIteration": 1484768149155,
+      "repeatIteration": 1484778107802,
       "repeatRowId": 4,
       "showTitle": true,
       "title": "$ffs_routers",
@@ -1732,7 +1736,6 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -1854,5 +1857,5 @@
   },
   "timezone": "browser",
   "title": "Freifunk",
-  "version": 24
+  "version": 25
 }
