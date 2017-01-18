@@ -59,13 +59,13 @@ extract_stat() {
 	if [[ "$#" -eq 3 ]]; then
 		VAR_VALUE=$($3 "$VAR_VALUE")
 	fi
-	echo "PUTVAL \"freifunk/${NODE_ID}/${COLLECTD_NODE}\" interval=${INTERVAL} N:${VAR_VALUE}"
+	echo "PUTVAL \"freifunk/node-${NODE_ID}/${COLLECTD_NODE}\" interval=${INTERVAL} N:${VAR_VALUE}"
 }
 
 const_stat() {
 	COLLECTD_NODE=$1
 	VAR_VALUE=$2
-	echo "PUTVAL \"freifunk/${NODE_ID}/${COLLECTD_NODE}\" interval=${INTERVAL} N:${VAR_VALUE}"
+	echo "PUTVAL \"freifunk/node-${NODE_ID}/${COLLECTD_NODE}\" interval=${INTERVAL} N:${VAR_VALUE}"
 }
 
 to_int() {
