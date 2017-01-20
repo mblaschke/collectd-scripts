@@ -121,7 +121,7 @@ get_volume_usage () {
          ITEM_ID=$(extract_last_node_id "$SNMP_NODE_ID")
          ITEM_NAME=$(fetch_snmp "1.3.6.1.2.1.25.2.3.1.3.${ITEM_ID}" | tr -d '/')
 
-         snmp_simple_derive "volume.${ITEM_NAME}" "blocksize" "1.3.6.1.2.1.25.2.3.1.4.${ITEM_ID}"
+         snmp_simple_gauge "volume.${ITEM_NAME}" "blocksize" "1.3.6.1.2.1.25.2.3.1.4.${ITEM_ID}"
 
          snmp_simple_gauge "volume.${ITEM_NAME}" "used"      "1.3.6.1.2.1.25.2.3.1.6.${ITEM_ID}"
          snmp_simple_gauge "volume.${ITEM_NAME}" "capacity"  "1.3.6.1.2.1.25.2.3.1.5.${ITEM_ID}"

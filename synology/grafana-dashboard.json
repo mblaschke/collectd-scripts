@@ -279,13 +279,13 @@
           "targets": [
             {
               "refId": "A",
-              "target": "alias(diffSeries(diskstation.synology-system-memory.memory-total_real, diskstation.synology-system-memory.memory-total_free), 'usage')",
+              "target": "alias(diffSeries(diskstation.synology-system-memory.memory-total_real, diskstation.synology-system-memory.memory-avail_real, diskstation.synology-system-memory.memory-cached, diskstation.synology-system-memory.memory-buffer), 'usage')",
               "targetFull": "diffSeries(diskstation.synology.gauge-memory_mem_total_free, diskstation.synology.gauge-memory_mem_total)",
               "textEditor": true
             },
             {
               "refId": "B",
-              "target": "alias(asPercent(diffSeries(diskstation.synology-system-memory.memory-total_real, diskstation.synology-system-memory.memory-total_free), diskstation.synology-system-memory.memory-total_real), 'usage %')",
+              "target": "alias(asPercent(diffSeries(diskstation.synology-system-memory.memory-total_real, diskstation.synology-system-memory.memory-avail_real, diskstation.synology-system-memory.memory-cached, diskstation.synology-system-memory.memory-buffer), diskstation.synology-system-memory.memory-total_real), 'usage %')",
               "textEditor": true
             }
           ],
@@ -363,7 +363,7 @@
           "repeat": "volumes",
           "scopedVars": {
             "volumes": {
-              "selected": true,
+              "selected": false,
               "text": "volume1",
               "value": "volume1"
             }
@@ -381,18 +381,18 @@
               "fill": 0
             }
           ],
-          "span": 6,
+          "span": 4,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
               "refId": "A",
-              "target": "alias(multiplySeries(diskstation.synology-volume-$volumes.gauge-capacity, diskstation.synology.gauge-volume_$volumes.derive_blocksize), 'Capacity')",
+              "target": "alias(multiplySeries(diskstation.synology-volume-$volumes.gauge-capacity, diskstation.synology-volume-$volumes.gauge-blocksize), 'Capacity')",
               "textEditor": true
             },
             {
               "refId": "B",
-              "target": "alias(multiplySeries(diskstation.synology-volume-$volumes.gauge-used, diskstation.synology-volume-$volumes.derive-blocksize), 'Usage')",
+              "target": "alias(multiplySeries(diskstation.synology-volume-$volumes.gauge-used, diskstation.synology-volume-$volumes.gauge-blocksize), 'Usage')",
               "textEditor": true
             },
             {
@@ -441,7 +441,7 @@
           "bars": false,
           "datasource": null,
           "fill": 1,
-          "id": 16,
+          "id": 23,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -461,11 +461,11 @@
           "points": false,
           "renderer": "flot",
           "repeat": null,
-          "repeatIteration": 1484778107803,
+          "repeatIteration": 1484868786927,
           "repeatPanelId": 3,
           "scopedVars": {
             "volumes": {
-              "selected": true,
+              "selected": false,
               "text": "volume2",
               "value": "volume2"
             }
@@ -483,18 +483,120 @@
               "fill": 0
             }
           ],
-          "span": 6,
+          "span": 4,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
               "refId": "A",
-              "target": "alias(multiplySeries(diskstation.synology-volume-$volumes.gauge-capacity, diskstation.synology.gauge-volume_$volumes.derive_blocksize), 'Capacity')",
+              "target": "alias(multiplySeries(diskstation.synology-volume-$volumes.gauge-capacity, diskstation.synology-volume-$volumes.gauge-blocksize), 'Capacity')",
               "textEditor": true
             },
             {
               "refId": "B",
-              "target": "alias(multiplySeries(diskstation.synology-volume-$volumes.gauge-used, diskstation.synology-volume-$volumes.derive-blocksize), 'Usage')",
+              "target": "alias(multiplySeries(diskstation.synology-volume-$volumes.gauge-used, diskstation.synology-volume-$volumes.gauge-blocksize), 'Usage')",
+              "textEditor": true
+            },
+            {
+              "refId": "C",
+              "target": "alias(asPercent(diskstation.synology-volume-$volumes.gauge-used, diskstation.synology-volume-$volumes.gauge-capacity), 'Usage %'))",
+              "textEditor": true
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$volumes",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": "100",
+              "min": "0",
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "fill": 1,
+          "id": 24,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatIteration": 1484868786927,
+          "repeatPanelId": 3,
+          "scopedVars": {
+            "volumes": {
+              "selected": false,
+              "text": "volume3",
+              "value": "volume3"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "alias": "Usage %",
+              "fill": 0,
+              "linewidth": 2,
+              "yaxis": 2
+            },
+            {
+              "alias": "Capacity",
+              "color": "#890F02",
+              "fill": 0
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "alias(multiplySeries(diskstation.synology-volume-$volumes.gauge-capacity, diskstation.synology-volume-$volumes.gauge-blocksize), 'Capacity')",
+              "textEditor": true
+            },
+            {
+              "refId": "B",
+              "target": "alias(multiplySeries(diskstation.synology-volume-$volumes.gauge-used, diskstation.synology-volume-$volumes.gauge-blocksize), 'Usage')",
               "textEditor": true
             },
             {
@@ -611,7 +713,7 @@
               "format": "bps",
               "label": "MB/sec",
               "logBase": 1,
-              "max": null,
+              "max": "100000000",
               "min": "0",
               "show": true
             },
@@ -739,7 +841,7 @@
           "repeat": "disks",
           "scopedVars": {
             "disks": {
-              "selected": true,
+              "selected": false,
               "text": "disk0",
               "value": "disk0"
             }
@@ -820,11 +922,11 @@
           "points": false,
           "renderer": "flot",
           "repeat": null,
-          "repeatIteration": 1484778107803,
+          "repeatIteration": 1484868786927,
           "repeatPanelId": 13,
           "scopedVars": {
             "disks": {
-              "selected": true,
+              "selected": false,
               "text": "disk1",
               "value": "disk1"
             }
@@ -905,11 +1007,11 @@
           "points": false,
           "renderer": "flot",
           "repeat": null,
-          "repeatIteration": 1484778107803,
+          "repeatIteration": 1484868786927,
           "repeatPanelId": 13,
           "scopedVars": {
             "disks": {
-              "selected": true,
+              "selected": false,
               "text": "disk2",
               "value": "disk2"
             }
@@ -990,11 +1092,11 @@
           "points": false,
           "renderer": "flot",
           "repeat": null,
-          "repeatIteration": 1484778107803,
+          "repeatIteration": 1484868786927,
           "repeatPanelId": 13,
           "scopedVars": {
             "disks": {
-              "selected": true,
+              "selected": false,
               "text": "disk3",
               "value": "disk3"
             }
@@ -1142,7 +1244,7 @@
     },
     {
       "collapse": false,
-      "height": 250,
+      "height": 232,
       "panels": [
         {
           "aliasColors": {},
@@ -1171,7 +1273,7 @@
           "repeat": "storageio",
           "scopedVars": {
             "storageio": {
-              "selected": true,
+              "selected": false,
               "text": "sda",
               "value": "sda"
             }
@@ -1246,11 +1348,11 @@
           "points": false,
           "renderer": "flot",
           "repeat": null,
-          "repeatIteration": 1484778107803,
+          "repeatIteration": 1484868786927,
           "repeatPanelId": 15,
           "scopedVars": {
             "storageio": {
-              "selected": true,
+              "selected": false,
               "text": "sdb",
               "value": "sdb"
             }
@@ -1325,11 +1427,11 @@
           "points": false,
           "renderer": "flot",
           "repeat": null,
-          "repeatIteration": 1484778107803,
+          "repeatIteration": 1484868786927,
           "repeatPanelId": 15,
           "scopedVars": {
             "storageio": {
-              "selected": true,
+              "selected": false,
               "text": "sdc",
               "value": "sdc"
             }
@@ -1404,11 +1506,11 @@
           "points": false,
           "renderer": "flot",
           "repeat": null,
-          "repeatIteration": 1484778107803,
+          "repeatIteration": 1484868786927,
           "repeatPanelId": 15,
           "scopedVars": {
             "storageio": {
-              "selected": true,
+              "selected": false,
               "text": "sdd",
               "value": "sdd"
             }
@@ -1475,15 +1577,14 @@
       {
         "allValue": null,
         "current": {
-          "text": "volume1 + volume2",
+          "text": "All",
           "value": [
-            "volume1",
-            "volume2"
+            "$__all"
           ]
         },
         "datasource": "Graphite",
         "hide": 0,
-        "includeAll": false,
+        "includeAll": true,
         "label": "Volumes",
         "multi": true,
         "name": "volumes",
@@ -1501,17 +1602,13 @@
       {
         "allValue": null,
         "current": {
-          "text": "disk0 + disk1 + disk2 + disk3",
-          "value": [
-            "disk0",
-            "disk1",
-            "disk2",
-            "disk3"
-          ]
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": "Graphite",
         "hide": 0,
-        "includeAll": false,
+        "includeAll": true,
         "label": "Disks",
         "multi": true,
         "name": "disks",
@@ -1529,12 +1626,13 @@
       {
         "allValue": null,
         "current": {
+          "selected": true,
           "text": "AFP",
           "value": "AFP"
         },
         "datasource": "Graphite",
         "hide": 2,
-        "includeAll": false,
+        "includeAll": true,
         "label": null,
         "multi": true,
         "name": "services",
@@ -1552,17 +1650,13 @@
       {
         "allValue": null,
         "current": {
-          "text": "sda + sdb + sdc + sdd",
-          "value": [
-            "sda",
-            "sdb",
-            "sdc",
-            "sdd"
-          ]
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": "Graphite",
         "hide": 0,
-        "includeAll": false,
+        "includeAll": true,
         "label": "storageio",
         "multi": true,
         "name": "storageio",
@@ -1580,13 +1674,13 @@
       {
         "allValue": null,
         "current": {
-          "isNone": true,
-          "text": "None",
-          "value": ""
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": "Graphite",
         "hide": 2,
-        "includeAll": false,
+        "includeAll": true,
         "label": null,
         "multi": true,
         "name": "spaceio",
@@ -1634,5 +1728,5 @@
   },
   "timezone": "browser",
   "title": "Diskstation",
-  "version": 44
+  "version": 50
 }
