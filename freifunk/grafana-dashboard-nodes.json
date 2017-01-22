@@ -214,8 +214,8 @@
           "scopedVars": {
             "ffs_routers": {
               "selected": false,
-              "text": "node-60e327f23138-ffs-bb-feldbergstr-uplink",
-              "value": "node-60e327f23138-ffs-bb-feldbergstr-uplink"
+              "text": "60e327f23138-ffs-bb-feldbergstr-uplink",
+              "value": "60e327f23138-ffs-bb-feldbergstr-uplink"
             }
           },
           "seriesOverrides": [
@@ -240,24 +240,24 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.uptime), 100), 'uptime')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.uptime), 100), 'uptime')",
+              "textEditor": true
             },
             {
               "hide": false,
               "refId": "D",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.gauge-loadavg), 100), 'loadavg')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.gauge-loadavg), 100), 'loadavg')",
+              "textEditor": true
             },
             {
               "refId": "A",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.percent-memory), 100), 'memory')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-memory), 100), 'memory')",
+              "textEditor": true
             },
             {
               "refId": "F",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.percent-rootfs), 100), 'rootfs')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-rootfs), 100), 'rootfs')",
+              "textEditor": true
             }
           ],
           "thresholds": [],
@@ -323,8 +323,8 @@
           "scopedVars": {
             "ffs_routers": {
               "selected": false,
-              "text": "node-60e327f23138-ffs-bb-feldbergstr-uplink",
-              "value": "node-60e327f23138-ffs-bb-feldbergstr-uplink"
+              "text": "60e327f23138-ffs-bb-feldbergstr-uplink",
+              "value": "60e327f23138-ffs-bb-feldbergstr-uplink"
             }
           },
           "seriesOverrides": [
@@ -340,12 +340,12 @@
           "targets": [
             {
               "refId": "A",
-              "target": "alias(sumSeries(freifunk.node-$ffs_routers*.users), 'users')",
+              "target": "alias(sumSeries(freifunk.node-$ffs_routers.users), 'users')",
               "textEditor": true
             },
             {
               "refId": "B",
-              "target": "alias(smartSummarize(sumSeries(freifunk.node-$ffs_routers*.users), '6h', 'avg'), 'average')",
+              "target": "alias(smartSummarize(sumSeries(freifunk.node-$ffs_routers.users), '6h', 'avg'), 'average')",
               "textEditor": true
             }
           ],
@@ -424,8 +424,8 @@
           "scopedVars": {
             "ffs_routers": {
               "selected": false,
-              "text": "node-687251303cfa-ffs-bb-feldbergstr-east",
-              "value": "node-687251303cfa-ffs-bb-feldbergstr-east"
+              "text": "687251303cfa-ffs-bb-feldbergstr-east",
+              "value": "687251303cfa-ffs-bb-feldbergstr-east"
             }
           },
           "seriesOverrides": [
@@ -450,24 +450,24 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.uptime), 100), 'uptime')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.uptime), 100), 'uptime')",
+              "textEditor": true
             },
             {
               "hide": false,
               "refId": "D",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.gauge-loadavg), 100), 'loadavg')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.gauge-loadavg), 100), 'loadavg')",
+              "textEditor": true
             },
             {
               "refId": "A",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.percent-memory), 100), 'memory')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-memory), 100), 'memory')",
+              "textEditor": true
             },
             {
               "refId": "F",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.percent-rootfs), 100), 'rootfs')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-rootfs), 100), 'rootfs')",
+              "textEditor": true
             }
           ],
           "thresholds": [],
@@ -533,8 +533,8 @@
           "scopedVars": {
             "ffs_routers": {
               "selected": false,
-              "text": "node-687251303cfa-ffs-bb-feldbergstr-east",
-              "value": "node-687251303cfa-ffs-bb-feldbergstr-east"
+              "text": "687251303cfa-ffs-bb-feldbergstr-east",
+              "value": "687251303cfa-ffs-bb-feldbergstr-east"
             }
           },
           "seriesOverrides": [
@@ -550,12 +550,12 @@
           "targets": [
             {
               "refId": "A",
-              "target": "alias(sumSeries(freifunk.node-$ffs_routers*.users), 'users')",
+              "target": "alias(sumSeries(freifunk.node-$ffs_routers.users), 'users')",
               "textEditor": true
             },
             {
               "refId": "B",
-              "target": "alias(smartSummarize(sumSeries(freifunk.node-$ffs_routers*.users), '6h', 'avg'), 'average')",
+              "target": "alias(smartSummarize(sumSeries(freifunk.node-$ffs_routers.users), '6h', 'avg'), 'average')",
               "textEditor": true
             }
           ],
@@ -596,7 +596,7 @@
         }
       ],
       "repeat": null,
-      "repeatIteration": 1485028159495,
+      "repeatIteration": 1485028159500,
       "repeatRowId": 2,
       "showTitle": true,
       "title": "$ffs_routers",
@@ -634,8 +634,8 @@
           "scopedVars": {
             "ffs_routers": {
               "selected": false,
-              "text": "node-687251345b9b-ffs-bb-feldbergstr-west",
-              "value": "node-687251345b9b-ffs-bb-feldbergstr-west"
+              "text": "687251345b9b-ffs-bb-feldbergstr-west",
+              "value": "687251345b9b-ffs-bb-feldbergstr-west"
             }
           },
           "seriesOverrides": [
@@ -660,24 +660,24 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.uptime), 100), 'uptime')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.uptime), 100), 'uptime')",
+              "textEditor": true
             },
             {
               "hide": false,
               "refId": "D",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.gauge-loadavg), 100), 'loadavg')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.gauge-loadavg), 100), 'loadavg')",
+              "textEditor": true
             },
             {
               "refId": "A",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.percent-memory), 100), 'memory')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-memory), 100), 'memory')",
+              "textEditor": true
             },
             {
               "refId": "F",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.percent-rootfs), 100), 'rootfs')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-rootfs), 100), 'rootfs')",
+              "textEditor": true
             }
           ],
           "thresholds": [],
@@ -743,8 +743,8 @@
           "scopedVars": {
             "ffs_routers": {
               "selected": false,
-              "text": "node-687251345b9b-ffs-bb-feldbergstr-west",
-              "value": "node-687251345b9b-ffs-bb-feldbergstr-west"
+              "text": "687251345b9b-ffs-bb-feldbergstr-west",
+              "value": "687251345b9b-ffs-bb-feldbergstr-west"
             }
           },
           "seriesOverrides": [
@@ -760,12 +760,12 @@
           "targets": [
             {
               "refId": "A",
-              "target": "alias(sumSeries(freifunk.node-$ffs_routers*.users), 'users')",
+              "target": "alias(sumSeries(freifunk.node-$ffs_routers.users), 'users')",
               "textEditor": true
             },
             {
               "refId": "B",
-              "target": "alias(smartSummarize(sumSeries(freifunk.node-$ffs_routers*.users), '6h', 'avg'), 'average')",
+              "target": "alias(smartSummarize(sumSeries(freifunk.node-$ffs_routers.users), '6h', 'avg'), 'average')",
               "textEditor": true
             }
           ],
@@ -806,7 +806,7 @@
         }
       ],
       "repeat": null,
-      "repeatIteration": 1485028159495,
+      "repeatIteration": 1485028159500,
       "repeatRowId": 2,
       "showTitle": true,
       "title": "$ffs_routers",
@@ -844,8 +844,8 @@
           "scopedVars": {
             "ffs_routers": {
               "selected": false,
-              "text": "node-6872513223a9-ffs-bb-feldbergstr-south",
-              "value": "node-6872513223a9-ffs-bb-feldbergstr-south"
+              "text": "6872513223a9-ffs-bb-feldbergstr-south",
+              "value": "6872513223a9-ffs-bb-feldbergstr-south"
             }
           },
           "seriesOverrides": [
@@ -870,24 +870,24 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.uptime), 100), 'uptime')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.uptime), 100), 'uptime')",
+              "textEditor": true
             },
             {
               "hide": false,
               "refId": "D",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.gauge-loadavg), 100), 'loadavg')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.gauge-loadavg), 100), 'loadavg')",
+              "textEditor": true
             },
             {
               "refId": "A",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.percent-memory), 100), 'memory')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-memory), 100), 'memory')",
+              "textEditor": true
             },
             {
               "refId": "F",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.percent-rootfs), 100), 'rootfs')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-rootfs), 100), 'rootfs')",
+              "textEditor": true
             }
           ],
           "thresholds": [],
@@ -953,8 +953,8 @@
           "scopedVars": {
             "ffs_routers": {
               "selected": false,
-              "text": "node-6872513223a9-ffs-bb-feldbergstr-south",
-              "value": "node-6872513223a9-ffs-bb-feldbergstr-south"
+              "text": "6872513223a9-ffs-bb-feldbergstr-south",
+              "value": "6872513223a9-ffs-bb-feldbergstr-south"
             }
           },
           "seriesOverrides": [
@@ -970,12 +970,12 @@
           "targets": [
             {
               "refId": "A",
-              "target": "alias(sumSeries(freifunk.node-$ffs_routers*.users), 'users')",
+              "target": "alias(sumSeries(freifunk.node-$ffs_routers.users), 'users')",
               "textEditor": true
             },
             {
               "refId": "B",
-              "target": "alias(smartSummarize(sumSeries(freifunk.node-$ffs_routers*.users), '6h', 'avg'), 'average')",
+              "target": "alias(smartSummarize(sumSeries(freifunk.node-$ffs_routers.users), '6h', 'avg'), 'average')",
               "textEditor": true
             }
           ],
@@ -1016,7 +1016,7 @@
         }
       ],
       "repeat": null,
-      "repeatIteration": 1485028159495,
+      "repeatIteration": 1485028159500,
       "repeatRowId": 2,
       "showTitle": true,
       "title": "$ffs_routers",
@@ -1054,8 +1054,8 @@
           "scopedVars": {
             "ffs_routers": {
               "selected": false,
-              "text": "node-687251608192-ffs-bb-feldbergstr-southwest",
-              "value": "node-687251608192-ffs-bb-feldbergstr-southwest"
+              "text": "687251608192-ffs-bb-feldbergstr-southwest",
+              "value": "687251608192-ffs-bb-feldbergstr-southwest"
             }
           },
           "seriesOverrides": [
@@ -1080,24 +1080,24 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.uptime), 100), 'uptime')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.uptime), 100), 'uptime')",
+              "textEditor": true
             },
             {
               "hide": false,
               "refId": "D",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.gauge-loadavg), 100), 'loadavg')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.gauge-loadavg), 100), 'loadavg')",
+              "textEditor": true
             },
             {
               "refId": "A",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.percent-memory), 100), 'memory')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-memory), 100), 'memory')",
+              "textEditor": true
             },
             {
               "refId": "F",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers*.percent-rootfs), 100), 'rootfs')",
-              "textEditor": false
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-rootfs), 100), 'rootfs')",
+              "textEditor": true
             }
           ],
           "thresholds": [],
@@ -1163,8 +1163,8 @@
           "scopedVars": {
             "ffs_routers": {
               "selected": false,
-              "text": "node-687251608192-ffs-bb-feldbergstr-southwest",
-              "value": "node-687251608192-ffs-bb-feldbergstr-southwest"
+              "text": "687251608192-ffs-bb-feldbergstr-southwest",
+              "value": "687251608192-ffs-bb-feldbergstr-southwest"
             }
           },
           "seriesOverrides": [
@@ -1180,12 +1180,12 @@
           "targets": [
             {
               "refId": "A",
-              "target": "alias(sumSeries(freifunk.node-$ffs_routers*.users), 'users')",
+              "target": "alias(sumSeries(freifunk.node-$ffs_routers.users), 'users')",
               "textEditor": true
             },
             {
               "refId": "B",
-              "target": "alias(smartSummarize(sumSeries(freifunk.node-$ffs_routers*.users), '6h', 'avg'), 'average')",
+              "target": "alias(smartSummarize(sumSeries(freifunk.node-$ffs_routers.users), '6h', 'avg'), 'average')",
               "textEditor": true
             }
           ],
@@ -1226,7 +1226,7 @@
         }
       ],
       "repeat": null,
-      "repeatIteration": 1485028159495,
+      "repeatIteration": 1485028159500,
       "repeatRowId": 2,
       "showTitle": true,
       "title": "$ffs_routers",
@@ -1255,7 +1255,7 @@
         "options": [],
         "query": "freifunk.node-*",
         "refresh": 2,
-        "regex": "",
+        "regex": "/node-(.*)/",
         "sort": 3,
         "tagValuesQuery": "",
         "tags": [],
@@ -1296,5 +1296,5 @@
   },
   "timezone": "browser",
   "title": "Freifunk Nodes",
-  "version": 6
+  "version": 8
 }
