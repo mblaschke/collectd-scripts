@@ -1,14 +1,33 @@
 #!/bin/bash
 
-#This script pulls storage information from the Synology NAS
+# This script pulls storage information from the Synology NAS
 
 set -o pipefail  ## trace ERR through pipes
 set -o errtrace  ## trace ERR through 'time command' and other functions
 set -o nounset   ## set -u : exit the script if you try to use an uninitialised variable
 set -o errexit   ## set -e : exit the script if any statement returns a non-true return value
 
-DRIVE_COUNT=9
-NETWORK_COUNT=10
+# Smart Status
+# -> 0      = disabled
+# -> status = only fetch status (ok, not ok)
+# -> full   = fetch all informations (many values)
+CONF_SMART_STATUS="0"
+
+# Network interface filter
+# -> regular expression for filtering names
+CONF_NET_FILTER="\"(eth|sit)"
+
+# Drive filter
+# -> regular expression for filtering names
+CONF_DRIVE_FILTER="\"Disk[ 0-9]+\""
+
+# Volume filter
+# -> regular expression for filtering names
+CONF_VOLUME_FILTER="\"/volume[ 0-9]+\""
+
+
+### do not change below ###
+
 HOSTNAME="$1"
 INTERVAL="${COLLECTD_INTERVAL:-60}"
 
@@ -265,6 +284,41 @@ get_space_io_stats() {
     done
 }
 
+get_smart_stats() {
+    if [[ "$CONF_SMART_STATUS" == "0" ]]; then
+        return
+    fi
+
+    NODE_LIST=$(search_snmp_id "1.3.6.1.4.1.6574.5.1.1.1" "")
+
+    if [[ -z "$NODE_LIST" ]]; then
+        return
+    fi
+
+    for SNMP_NODE_ID in $NODE_LIST; do
+        ITEM_ID=$(extract_last_node_id "$SNMP_NODE_ID")
+        ITEM_NAME="$(fetch_snmp "1.3.6.1.4.1.6574.5.1.1.2.${ITEM_ID}")-$(fetch_snmp "1.3.6.1.4.1.6574.5.1.1.4.${ITEM_ID}")-$(fetch_snmp "1.3.6.1.4.1.6574.5.1.1.3.${ITEM_ID}")"
+
+	STATUS_VALUE=$(fetch_snmp "1.3.6.1.4.1.6574.5.1.1.9.${ITEM_ID}")
+	case "$STATUS_VALUE" in
+		"OK")
+			STATUS_VALUE=1
+			;;
+		*)
+			STATUS_VALUE=0
+			;;
+	esac
+	collectd_gauge "smart.${ITEM_NAME}" "status" "$STATUS_VALUE"
+
+        if [[ "CONF_SMART_STATUS" == "full" ]]; then
+            snmp_simple_gauge "smart.${ITEM_NAME}" "current"    "1.3.6.1.4.1.6574.5.1.1.5.${ITEM_ID}"
+            snmp_simple_gauge "smart.${ITEM_NAME}" "worst"      "1.3.6.1.4.1.6574.5.1.1.6.${ITEM_ID}"
+            snmp_simple_gauge "smart.${ITEM_NAME}" "threshold"  "1.3.6.1.4.1.6574.5.1.1.7.${ITEM_ID}"
+            snmp_simple_gauge "smart.${ITEM_NAME}" "raw"        "1.3.6.1.4.1.6574.5.1.1.8.${ITEM_ID}"
+       fi
+    done
+}
+
 
 collectd_translate_name() {
   key="$*"
@@ -308,11 +362,12 @@ main() {
     get_sys_stats
     get_service_stats
     get_ups_stats
-    get_net_stats        "\"(eth|sit)"
-    get_drive_stats      "\"Disk[ 0-9]+\""
+    get_net_stats        "$CONF_NET_FILTER"
+    get_drive_stats      "$CONF_DRIVE_FILTER"
     get_raid_stats
+    get_smart_stats
     get_storage_io_stats
-    get_volume_usage     "\"/volume[ 0-9]+\""
+    get_volume_usage     "$CONF_VOLUME_FILTER"
 
     UPDATE_TIME=$(($(date +%s)-UPDATE_TIME))
     collectd_derive "update" "update-time" "$UPDATE_TIME"
@@ -322,6 +377,6 @@ main() {
 main $@
 
 # loop'ed run
-while sleep "$INTERVAL"
+while sleep "$INTERVAL"; do
         main $@
 done
