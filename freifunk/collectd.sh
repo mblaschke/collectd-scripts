@@ -29,7 +29,7 @@ update_nodes_json() {
 		RUN_UPDATE=1
 	fi
 
-	if test $(find "${NODES_JSON}" -mmin +"$UPDATE_AGE"); then
+	if test $(find "${NODES_JSON}" -mmin +"$UPDATE_AGE" &> /dev/null); then
 		RUN_UPDATE=1
 	fi
 
@@ -39,7 +39,7 @@ update_nodes_json() {
 			UPDATE_TIME=$(date +%s)
 			wget -O"${NODES_JSON}.tmp" "$NODES_URL" &> /dev/null
 			if [[ -f "${NODES_JSON}.tmp" ]]; then
-				mv -f "${NODES_JSON}.tmp" "${NODES_JSON}" &> /dev/null
+				mv -f "${NODES_JSON}.tmp" "${NODES_JSON}" &> /dev/null || rm -f "${NODES_JSON}.tmp"
 				rm -f "${NODES_JSON}.tmp"
 				UPDATE_TIME=$(($(date +%s)-UPDATE_TIME))
 				UPDATE_SIZE=$(stat -c%s "${NODES_JSON}")
