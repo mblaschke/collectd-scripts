@@ -142,6 +142,6 @@ main() {
 main $@
 
 # loop'ed run
-while sleep "$INTERVAL"
+while sleep "$INTERVAL"; do
 	main $@
 done
