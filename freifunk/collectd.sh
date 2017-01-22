@@ -35,6 +35,7 @@ INTERVAL="${COLLECTD_INTERVAL:-60}"
 
 update_nodes_json() {
 	RUN_UPDATE=0
+
 	if [[ ! -f "${CONF_NODE_JSON_PATH}" ]]; then
 		RUN_UPDATE=1
 	fi
@@ -43,25 +44,22 @@ update_nodes_json() {
 		RUN_UPDATE=1
 	fi
 
-	if test $(find "${CONF_NODE_JSON_PATH}" -mmin +"$CONF_AUTO_UPDATE_AGE" &> /dev/null); then
+	if [[ -f "${CONF_NODE_JSON_PATH}" ]] && [[ $(find "${CONF_NODE_JSON_PATH}" -mmin +"$CONF_AUTO_UPDATE_AGE") ]]; then
 		RUN_UPDATE=1
 	fi
 
-	if [[ "$UPDATE_FINSIHED" -eq 0 ]]; then
-		# check age
-		if [[ "$RUN_UPDATE" -eq 1 ]]; then
-			UPDATE_TIME=$(date +%s)
-			wget -O"${CONF_NODE_JSON_PATH}.tmp" "$CONF_NODE_JSON_URL" &> /dev/null
-			if [[ -f "${CONF_NODE_JSON_PATH}.tmp" ]]; then
-				mv -f "${CONF_NODE_JSON_PATH}.tmp" "${CONF_NODE_JSON_PATH}" &> /dev/null || rm -f "${CONF_NODE_JSON_PATH}.tmp"
-				rm -f "${CONF_NODE_JSON_PATH}.tmp"
-				UPDATE_TIME=$(($(date +%s)-UPDATE_TIME))
-				UPDATE_SIZE=$(stat -c%s "${CONF_NODE_JSON_PATH}")
-				echo "PUTVAL \"freifunk/stats/gauge-update_time\" interval=${INTERVAL} N:$UPDATE_TIME"
-				echo "PUTVAL \"freifunk/stats/gauge-update_filesize\" interval=${INTERVAL} N:$UPDATE_SIZE"
-			fi
+	# check age
+	if [[ "$RUN_UPDATE" -eq 1 ]]; then
+		UPDATE_TIME=$(date +%s)
+		wget -O"${CONF_NODE_JSON_PATH}.tmp" "$CONF_NODE_JSON_URL" &> /dev/null
+		if [[ -f "${CONF_NODE_JSON_PATH}.tmp" ]]; then
+			mv -f "${CONF_NODE_JSON_PATH}.tmp" "${CONF_NODE_JSON_PATH}" &> /dev/null || rm -f "${CONF_NODE_JSON_PATH}.tmp"
+			rm -f "${CONF_NODE_JSON_PATH}.tmp"
+			UPDATE_TIME=$(($(date +%s)-UPDATE_TIME))
+			UPDATE_SIZE=$(stat -c%s "${CONF_NODE_JSON_PATH}")
+			echo "PUTVAL \"freifunk/stats/gauge-update_time\" interval=${INTERVAL} N:$UPDATE_TIME"
+			echo "PUTVAL \"freifunk/stats/gauge-update_filesize\" interval=${INTERVAL} N:$UPDATE_SIZE"
 		fi
-		UPDATE_FINSIHED=1
 	fi
 }
 
@@ -117,10 +115,8 @@ to_float() {
 }
 
 main() {
-	UPDATE_FINSIHED=0
 	if [[ "$CONF_AUTO_UPDATE" -eq 1 ]]; then
 		update_nodes_json
-		sleep 1
 	fi
 
 	COLLECT_TIME=$(date +%s)
