@@ -180,7 +180,6 @@ get_sys_stats() {
     snmp_simple_native "system.memory" "swap-total"      "1.3.6.1.4.1.2021.4.3.0"
     snmp_simple_native "system.memory" "swap-avail"      "1.3.6.1.4.1.2021.4.4.0"
 
-    snmp_simple_native "system.memory" "memory-total"       "1.3.6.1.4.1.2021.4.5.0"
     snmp_simple_native "system.memory" "memory-total_real"  "1.3.6.1.4.1.2021.4.5.0"
     snmp_simple_native "system.memory" "memory-avail_real"  "1.3.6.1.4.1.2021.4.6.0"
     snmp_simple_native "system.memory" "memory-total_free"  "1.3.6.1.4.1.2021.4.11.0"
@@ -319,4 +318,10 @@ main() {
     collectd_derive "update" "update-time" "$UPDATE_TIME"
 }
 
-main
+# first run
+main $@
+
+# loop'ed run
+while sleep "$INTERVAL"
+        main $@
+done
