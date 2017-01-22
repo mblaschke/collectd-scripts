@@ -76,7 +76,7 @@
             }
           ],
           "thresholds": "",
-          "title": "Routers",
+          "title": "Online",
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -142,7 +142,7 @@
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Panel Title",
+          "title": "Collectd statistics",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -565,5 +565,5 @@
   },
   "timezone": "browser",
   "title": "Freifunk",
-  "version": 40
+  "version": 41
 }
