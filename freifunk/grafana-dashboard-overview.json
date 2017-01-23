@@ -12,7 +12,7 @@
   "rows": [
     {
       "collapse": false,
-      "height": 250,
+      "height": 247,
       "panels": [
         {
           "cacheTimeout": null,
@@ -60,7 +60,7 @@
               "to": "null"
             }
           ],
-          "span": 1,
+          "span": 2,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
             "full": false,
@@ -115,28 +115,89 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [
+          "seriesOverrides": [],
+          "span": 5,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
             {
-              "alias": "/time$/",
-              "yaxis": 2
+              "refId": "B",
+              "target": "alias(freifunk.stats.gauge-update_time, 'Uptime time')"
             },
-            {}
+            {
+              "refId": "C",
+              "target": "alias(freifunk.stats.gauge-collect_time, 'Collect time')"
+            }
           ],
-          "span": 11,
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Collectd statistics",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "fill": 0,
+          "id": 48,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 5,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
               "refId": "A",
-              "target": "alias(keepLastValue(freifunk.stats.gauge-update_filesize, 10000), 'nodes.json size')"
-            },
-            {
-              "refId": "B",
-              "target": "alias(keepLastValue(freifunk.stats.gauge-update_time, 10000), 'Uptime time')"
-            },
-            {
-              "refId": "C",
-              "target": "alias(keepLastValue(freifunk.stats.gauge-collect_time, 10000), 'Collect time')"
+              "target": "alias(freifunk.stats.gauge-update_filesize, 'nodes.json size')"
             }
           ],
           "thresholds": [],
@@ -165,12 +226,12 @@
               "show": true
             },
             {
-              "format": "s",
+              "format": "ms",
               "label": null,
               "logBase": 1,
               "max": null,
               "min": "0",
-              "show": true
+              "show": false
             }
           ]
         }
@@ -565,5 +626,5 @@
   },
   "timezone": "browser",
   "title": "Freifunk",
-  "version": 41
+  "version": 48
 }
