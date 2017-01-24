@@ -12,7 +12,7 @@
   "rows": [
     {
       "collapse": false,
-      "height": 250,
+      "height": 246,
       "panels": [
         {
           "cacheTimeout": null,
@@ -115,21 +115,11 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [
-            {
-              "alias": "/time$/",
-              "yaxis": 2
-            },
-            {}
-          ],
-          "span": 11,
+          "seriesOverrides": [],
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
-            {
-              "refId": "A",
-              "target": "alias(keepLastValue(freifunk.stats.gauge-update_filesize, 10000), 'nodes.json size')"
-            },
             {
               "refId": "B",
               "target": "alias(keepLastValue(freifunk.stats.gauge-update_time, 10000), 'Uptime time')"
@@ -142,7 +132,78 @@
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Panel Title",
+          "title": "Collect stats",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "ms",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "fill": 0,
+          "id": 55,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 5,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "alias(keepLastValue(freifunk.stats.gauge-update_filesize, 10000), 'nodes.json size')"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Collect stats",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -161,16 +222,16 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": "0",
+              "min": null,
               "show": true
             },
             {
-              "format": "s",
+              "format": "ms",
               "label": null,
               "logBase": 1,
               "max": null,
               "min": "0",
-              "show": true
+              "show": false
             }
           ]
         }
@@ -184,7 +245,7 @@
     },
     {
       "collapse": false,
-      "height": 296,
+      "height": 300,
       "panels": [
         {
           "aliasColors": {},
@@ -193,11 +254,11 @@
           "fill": 0,
           "id": 1,
           "legend": {
-            "alignAsTable": true,
-            "avg": true,
+            "alignAsTable": false,
+            "avg": false,
             "current": true,
-            "max": true,
-            "min": true,
+            "max": false,
+            "min": false,
             "show": true,
             "total": false,
             "values": true
@@ -214,41 +275,20 @@
           "scopedVars": {
             "ffs_routers": {
               "selected": false,
-              "text": "60e327f23138-ffs-bb-feldbergstr-uplink",
-              "value": "60e327f23138-ffs-bb-feldbergstr-uplink"
+              "text": "c4e9847db5a6-ffs-bayreuth-feramin",
+              "value": "c4e9847db5a6-ffs-bayreuth-feramin"
             }
           },
           "seriesOverrides": [
             {
               "alias": "uptime",
-              "fill": 0,
               "yaxis": 2
-            },
-            {
-              "alias": "power",
-              "bars": true,
-              "color": "#890F02",
-              "fill": 10,
-              "nullPointMode": "connected",
-              "stack": false
             }
           ],
-          "span": 5,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
-            {
-              "hide": false,
-              "refId": "B",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.uptime), 100), 'uptime')",
-              "textEditor": true
-            },
-            {
-              "hide": false,
-              "refId": "D",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.gauge-loadavg), 100), 'loadavg')",
-              "textEditor": true
-            },
             {
               "refId": "A",
               "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-memory), 100), 'memory')",
@@ -257,6 +297,11 @@
             {
               "refId": "F",
               "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-rootfs), 100), 'rootfs')",
+              "textEditor": true
+            },
+            {
+              "refId": "B",
+              "target": "alias(sumSeries(freifunk.node-$ffs_routers.uptime), 'uptime')",
               "textEditor": true
             }
           ],
@@ -292,6 +337,99 @@
               "max": null,
               "min": "0",
               "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Graphite",
+          "fill": 0,
+          "id": 56,
+          "legend": {
+            "alignAsTable": false,
+            "avg": true,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "ffs_routers": {
+              "selected": false,
+              "text": "c4e9847db5a6-ffs-bayreuth-feramin",
+              "value": "c4e9847db5a6-ffs-bayreuth-feramin"
+            }
+          },
+          "seriesOverrides": [],
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "D",
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.gauge-loadavg), 100), 'loadavg')",
+              "textEditor": true
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "warning",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 1
+            },
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 2
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Load",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": false
             }
           ]
         },
@@ -323,8 +461,8 @@
           "scopedVars": {
             "ffs_routers": {
               "selected": false,
-              "text": "60e327f23138-ffs-bb-feldbergstr-uplink",
-              "value": "60e327f23138-ffs-bb-feldbergstr-uplink"
+              "text": "c4e9847db5a6-ffs-bayreuth-feramin",
+              "value": "c4e9847db5a6-ffs-bayreuth-feramin"
             }
           },
           "seriesOverrides": [
@@ -332,9 +470,14 @@
               "alias": "average",
               "fill": 0,
               "linewidth": 2
+            },
+            {
+              "alias": "uptime",
+              "fill": 0,
+              "yaxis": 2
             }
           ],
-          "span": 7,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -375,11 +518,11 @@
               "show": true
             },
             {
-              "format": "short",
+              "format": "s",
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": "0",
               "show": false
             }
           ]
@@ -394,14 +537,492 @@
     },
     {
       "collapse": false,
-      "height": 296,
+      "height": 300,
       "panels": [
         {
           "aliasColors": {},
           "bars": false,
           "datasource": "Graphite",
           "fill": 0,
-          "id": 45,
+          "id": 57,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "ffs_routers": {
+              "selected": false,
+              "text": "60e327f23138-ffs-bb-feldbergstr-uplink",
+              "value": "60e327f23138-ffs-bb-feldbergstr-uplink"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "alias": "uptime",
+              "yaxis": 2
+            }
+          ],
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-memory), 100), 'memory')",
+              "textEditor": true
+            },
+            {
+              "refId": "F",
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-rootfs), 100), 'rootfs')",
+              "textEditor": true
+            },
+            {
+              "refId": "B",
+              "target": "alias(sumSeries(freifunk.node-$ffs_routers.uptime), 'uptime')",
+              "textEditor": true
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "System",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": "1",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Graphite",
+          "fill": 0,
+          "id": 58,
+          "legend": {
+            "alignAsTable": false,
+            "avg": true,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "ffs_routers": {
+              "selected": false,
+              "text": "60e327f23138-ffs-bb-feldbergstr-uplink",
+              "value": "60e327f23138-ffs-bb-feldbergstr-uplink"
+            }
+          },
+          "seriesOverrides": [],
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "D",
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.gauge-loadavg), 100), 'loadavg')",
+              "textEditor": true
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "warning",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 1
+            },
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 2
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Load",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "fill": 1,
+          "id": 59,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "ffs_routers": {
+              "selected": false,
+              "text": "60e327f23138-ffs-bb-feldbergstr-uplink",
+              "value": "60e327f23138-ffs-bb-feldbergstr-uplink"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "alias": "average",
+              "fill": 0,
+              "linewidth": 2
+            },
+            {
+              "alias": "uptime",
+              "fill": 0,
+              "yaxis": 2
+            }
+          ],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "alias(sumSeries(freifunk.node-$ffs_routers.users), 'users')",
+              "textEditor": true
+            },
+            {
+              "refId": "B",
+              "target": "alias(smartSummarize(sumSeries(freifunk.node-$ffs_routers.users), '6h', 'avg'), 'average')",
+              "textEditor": true
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Users",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": 1485289795437,
+      "repeatRowId": 2,
+      "showTitle": true,
+      "title": "$ffs_routers",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 300,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Graphite",
+          "fill": 0,
+          "id": 60,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "ffs_routers": {
+              "selected": false,
+              "text": "687251303cfa-ffs-bb-feldbergstr-east",
+              "value": "687251303cfa-ffs-bb-feldbergstr-east"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "alias": "uptime",
+              "yaxis": 2
+            }
+          ],
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "A",
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-memory), 100), 'memory')",
+              "textEditor": true
+            },
+            {
+              "refId": "F",
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-rootfs), 100), 'rootfs')",
+              "textEditor": true
+            },
+            {
+              "refId": "B",
+              "target": "alias(sumSeries(freifunk.node-$ffs_routers.uptime), 'uptime')",
+              "textEditor": true
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "System",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": "1",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Graphite",
+          "fill": 0,
+          "id": 61,
+          "legend": {
+            "alignAsTable": false,
+            "avg": true,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "ffs_routers": {
+              "selected": false,
+              "text": "687251303cfa-ffs-bb-feldbergstr-east",
+              "value": "687251303cfa-ffs-bb-feldbergstr-east"
+            }
+          },
+          "seriesOverrides": [],
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "D",
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.gauge-loadavg), 100), 'loadavg')",
+              "textEditor": true
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "warning",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 1
+            },
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 2
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Load",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "fill": 1,
+          "id": 62,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -430,121 +1051,17 @@
           },
           "seriesOverrides": [
             {
-              "alias": "uptime",
-              "fill": 0,
-              "yaxis": 2
-            },
-            {
-              "alias": "power",
-              "bars": true,
-              "color": "#890F02",
-              "fill": 10,
-              "nullPointMode": "connected",
-              "stack": false
-            }
-          ],
-          "span": 5,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "hide": false,
-              "refId": "B",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.uptime), 100), 'uptime')",
-              "textEditor": true
-            },
-            {
-              "hide": false,
-              "refId": "D",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.gauge-loadavg), 100), 'loadavg')",
-              "textEditor": true
-            },
-            {
-              "refId": "A",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-memory), 100), 'memory')",
-              "textEditor": true
-            },
-            {
-              "refId": "F",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-rootfs), 100), 'rootfs')",
-              "textEditor": true
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "System",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "percentunit",
-              "label": null,
-              "logBase": 1,
-              "max": "1",
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": null,
-          "fill": 1,
-          "id": 46,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "scopedVars": {
-            "ffs_routers": {
-              "selected": false,
-              "text": "687251303cfa-ffs-bb-feldbergstr-east",
-              "value": "687251303cfa-ffs-bb-feldbergstr-east"
-            }
-          },
-          "seriesOverrides": [
-            {
               "alias": "average",
               "fill": 0,
               "linewidth": 2
+            },
+            {
+              "alias": "uptime",
+              "fill": 0,
+              "yaxis": 2
             }
           ],
-          "span": 7,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -585,18 +1102,18 @@
               "show": true
             },
             {
-              "format": "short",
+              "format": "s",
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": "0",
               "show": false
             }
           ]
         }
       ],
       "repeat": null,
-      "repeatIteration": 1485028159500,
+      "repeatIteration": 1485289795437,
       "repeatRowId": 2,
       "showTitle": true,
       "title": "$ffs_routers",
@@ -604,20 +1121,20 @@
     },
     {
       "collapse": false,
-      "height": 296,
+      "height": 300,
       "panels": [
         {
           "aliasColors": {},
           "bars": false,
           "datasource": "Graphite",
           "fill": 0,
-          "id": 47,
+          "id": 63,
           "legend": {
-            "alignAsTable": true,
-            "avg": true,
+            "alignAsTable": false,
+            "avg": false,
             "current": true,
-            "max": true,
-            "min": true,
+            "max": false,
+            "min": false,
             "show": true,
             "total": false,
             "values": true
@@ -641,34 +1158,13 @@
           "seriesOverrides": [
             {
               "alias": "uptime",
-              "fill": 0,
               "yaxis": 2
-            },
-            {
-              "alias": "power",
-              "bars": true,
-              "color": "#890F02",
-              "fill": 10,
-              "nullPointMode": "connected",
-              "stack": false
             }
           ],
-          "span": 5,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
-            {
-              "hide": false,
-              "refId": "B",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.uptime), 100), 'uptime')",
-              "textEditor": true
-            },
-            {
-              "hide": false,
-              "refId": "D",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.gauge-loadavg), 100), 'loadavg')",
-              "textEditor": true
-            },
             {
               "refId": "A",
               "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-memory), 100), 'memory')",
@@ -677,6 +1173,11 @@
             {
               "refId": "F",
               "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-rootfs), 100), 'rootfs')",
+              "textEditor": true
+            },
+            {
+              "refId": "B",
+              "target": "alias(sumSeries(freifunk.node-$ffs_routers.uptime), 'uptime')",
               "textEditor": true
             }
           ],
@@ -718,9 +1219,102 @@
         {
           "aliasColors": {},
           "bars": false,
+          "datasource": "Graphite",
+          "fill": 0,
+          "id": 64,
+          "legend": {
+            "alignAsTable": false,
+            "avg": true,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "ffs_routers": {
+              "selected": false,
+              "text": "687251345b9b-ffs-bb-feldbergstr-west",
+              "value": "687251345b9b-ffs-bb-feldbergstr-west"
+            }
+          },
+          "seriesOverrides": [],
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "D",
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.gauge-loadavg), 100), 'loadavg')",
+              "textEditor": true
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "warning",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 1
+            },
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 2
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Load",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
           "datasource": null,
           "fill": 1,
-          "id": 48,
+          "id": 65,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -752,9 +1346,14 @@
               "alias": "average",
               "fill": 0,
               "linewidth": 2
+            },
+            {
+              "alias": "uptime",
+              "fill": 0,
+              "yaxis": 2
             }
           ],
-          "span": 7,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -795,18 +1394,18 @@
               "show": true
             },
             {
-              "format": "short",
+              "format": "s",
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": "0",
               "show": false
             }
           ]
         }
       ],
       "repeat": null,
-      "repeatIteration": 1485028159500,
+      "repeatIteration": 1485289795437,
       "repeatRowId": 2,
       "showTitle": true,
       "title": "$ffs_routers",
@@ -814,20 +1413,20 @@
     },
     {
       "collapse": false,
-      "height": 296,
+      "height": 300,
       "panels": [
         {
           "aliasColors": {},
           "bars": false,
           "datasource": "Graphite",
           "fill": 0,
-          "id": 49,
+          "id": 66,
           "legend": {
-            "alignAsTable": true,
-            "avg": true,
+            "alignAsTable": false,
+            "avg": false,
             "current": true,
-            "max": true,
-            "min": true,
+            "max": false,
+            "min": false,
             "show": true,
             "total": false,
             "values": true
@@ -851,34 +1450,13 @@
           "seriesOverrides": [
             {
               "alias": "uptime",
-              "fill": 0,
               "yaxis": 2
-            },
-            {
-              "alias": "power",
-              "bars": true,
-              "color": "#890F02",
-              "fill": 10,
-              "nullPointMode": "connected",
-              "stack": false
             }
           ],
-          "span": 5,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
-            {
-              "hide": false,
-              "refId": "B",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.uptime), 100), 'uptime')",
-              "textEditor": true
-            },
-            {
-              "hide": false,
-              "refId": "D",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.gauge-loadavg), 100), 'loadavg')",
-              "textEditor": true
-            },
             {
               "refId": "A",
               "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-memory), 100), 'memory')",
@@ -887,6 +1465,11 @@
             {
               "refId": "F",
               "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-rootfs), 100), 'rootfs')",
+              "textEditor": true
+            },
+            {
+              "refId": "B",
+              "target": "alias(sumSeries(freifunk.node-$ffs_routers.uptime), 'uptime')",
               "textEditor": true
             }
           ],
@@ -928,9 +1511,102 @@
         {
           "aliasColors": {},
           "bars": false,
+          "datasource": "Graphite",
+          "fill": 0,
+          "id": 67,
+          "legend": {
+            "alignAsTable": false,
+            "avg": true,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "ffs_routers": {
+              "selected": false,
+              "text": "6872513223a9-ffs-bb-feldbergstr-south",
+              "value": "6872513223a9-ffs-bb-feldbergstr-south"
+            }
+          },
+          "seriesOverrides": [],
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "D",
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.gauge-loadavg), 100), 'loadavg')",
+              "textEditor": true
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "warning",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 1
+            },
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 2
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Load",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
           "datasource": null,
           "fill": 1,
-          "id": 50,
+          "id": 68,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -962,9 +1638,14 @@
               "alias": "average",
               "fill": 0,
               "linewidth": 2
+            },
+            {
+              "alias": "uptime",
+              "fill": 0,
+              "yaxis": 2
             }
           ],
-          "span": 7,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -1005,18 +1686,18 @@
               "show": true
             },
             {
-              "format": "short",
+              "format": "s",
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": "0",
               "show": false
             }
           ]
         }
       ],
       "repeat": null,
-      "repeatIteration": 1485028159500,
+      "repeatIteration": 1485289795437,
       "repeatRowId": 2,
       "showTitle": true,
       "title": "$ffs_routers",
@@ -1024,20 +1705,20 @@
     },
     {
       "collapse": false,
-      "height": 296,
+      "height": 300,
       "panels": [
         {
           "aliasColors": {},
           "bars": false,
           "datasource": "Graphite",
           "fill": 0,
-          "id": 51,
+          "id": 69,
           "legend": {
-            "alignAsTable": true,
-            "avg": true,
+            "alignAsTable": false,
+            "avg": false,
             "current": true,
-            "max": true,
-            "min": true,
+            "max": false,
+            "min": false,
             "show": true,
             "total": false,
             "values": true
@@ -1061,34 +1742,13 @@
           "seriesOverrides": [
             {
               "alias": "uptime",
-              "fill": 0,
               "yaxis": 2
-            },
-            {
-              "alias": "power",
-              "bars": true,
-              "color": "#890F02",
-              "fill": 10,
-              "nullPointMode": "connected",
-              "stack": false
             }
           ],
-          "span": 5,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
-            {
-              "hide": false,
-              "refId": "B",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.uptime), 100), 'uptime')",
-              "textEditor": true
-            },
-            {
-              "hide": false,
-              "refId": "D",
-              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.gauge-loadavg), 100), 'loadavg')",
-              "textEditor": true
-            },
             {
               "refId": "A",
               "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-memory), 100), 'memory')",
@@ -1097,6 +1757,11 @@
             {
               "refId": "F",
               "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.percent-rootfs), 100), 'rootfs')",
+              "textEditor": true
+            },
+            {
+              "refId": "B",
+              "target": "alias(sumSeries(freifunk.node-$ffs_routers.uptime), 'uptime')",
               "textEditor": true
             }
           ],
@@ -1138,9 +1803,102 @@
         {
           "aliasColors": {},
           "bars": false,
+          "datasource": "Graphite",
+          "fill": 0,
+          "id": 70,
+          "legend": {
+            "alignAsTable": false,
+            "avg": true,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "ffs_routers": {
+              "selected": false,
+              "text": "687251608192-ffs-bb-feldbergstr-southwest",
+              "value": "687251608192-ffs-bb-feldbergstr-southwest"
+            }
+          },
+          "seriesOverrides": [],
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "hide": false,
+              "refId": "D",
+              "target": "alias(keepLastValue(sumSeries(freifunk.node-$ffs_routers.gauge-loadavg), 100), 'loadavg')",
+              "textEditor": true
+            }
+          ],
+          "thresholds": [
+            {
+              "colorMode": "warning",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 1
+            },
+            {
+              "colorMode": "critical",
+              "fill": true,
+              "line": true,
+              "op": "gt",
+              "value": 2
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Load",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
           "datasource": null,
           "fill": 1,
-          "id": 52,
+          "id": 71,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1172,9 +1930,14 @@
               "alias": "average",
               "fill": 0,
               "linewidth": 2
+            },
+            {
+              "alias": "uptime",
+              "fill": 0,
+              "yaxis": 2
             }
           ],
-          "span": 7,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -1215,18 +1978,18 @@
               "show": true
             },
             {
-              "format": "short",
+              "format": "s",
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": "0",
               "show": false
             }
           ]
         }
       ],
       "repeat": null,
-      "repeatIteration": 1485028159500,
+      "repeatIteration": 1485289795437,
       "repeatRowId": 2,
       "showTitle": true,
       "title": "$ffs_routers",
@@ -1296,5 +2059,5 @@
   },
   "timezone": "browser",
   "title": "Freifunk Nodes",
-  "version": 8
+  "version": 17
 }
