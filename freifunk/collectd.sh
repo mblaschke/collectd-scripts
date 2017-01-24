@@ -33,6 +33,8 @@ SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 HOSTNAME="$1"
 INTERVAL="${COLLECTD_INTERVAL:-60}"
 
+WGET_OPTS="--user-agent=ffs-collectd-agent"
+
 FORCE_UPDATE=0
 UPDATE_TIME=-1
 UPDATE_SIZE=-1
@@ -92,7 +94,7 @@ update_nodes_json() {
 	# check age
 	if [[ "$RUN_UPDATE" -eq 1 ]]; then
 		UPDATE_TIME=$(current_time_ms)
-		wget -O"${CONF_NODE_JSON_PATH}.tmp" "$CONF_NODE_JSON_URL" &> /dev/null
+		wget $WGET_OPTS -O"${CONF_NODE_JSON_PATH}.tmp" "$CONF_NODE_JSON_URL" &> /dev/null
 		if [[ -f "${CONF_NODE_JSON_PATH}.tmp" ]]; then
 			mv -f "${CONF_NODE_JSON_PATH}.tmp" "${CONF_NODE_JSON_PATH}" &> /dev/null || rm -f "${CONF_NODE_JSON_PATH}.tmp"
 			rm -f "${CONF_NODE_JSON_PATH}.tmp"
