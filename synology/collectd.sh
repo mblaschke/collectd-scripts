@@ -32,7 +32,7 @@ HOSTNAME="$1"
 INTERVAL="${COLLECTD_INTERVAL:-60}"
 
 fetch_snmp() {
-    snmpget -v 2c -c public "$HOSTNAME" "$1" -Ov | cut -f 2 -d ':' | xargs
+    snmpget -v 2c -c public "$HOSTNAME" "$1" -Ov | rev | cut -f 1 -d ':' | rev | xargs
 }
 
 search_snmp_id() {
@@ -214,10 +214,9 @@ get_ups_stats() {
         return
     fi
 
-    snmp_simple_native "ups" "percent-load"            "1.3.6.1.4.1.6574.4.2.12.1"
-    snmp_simple_native "ups" "percent-charge"          "1.3.6.1.4.1.6574.4.3.1.1"
-    snmp_simple_native "ups" "percent-charge-warning"  "1.3.6.1.4.1.6574.4.3.1.4"
-    snmp_simple_gauge  "ups" "battery-type"            "1.3.6.1.4.1.6574.4.3.12"
+    snmp_simple_native "ups" "percent-load"            "1.3.6.1.4.1.6574.4.2.12.1.0"
+    snmp_simple_native "ups" "percent-charge"          "1.3.6.1.4.1.6574.4.3.1.1.0"
+    snmp_simple_native "ups" "percent-charge-warning"  "1.3.6.1.4.1.6574.4.3.1.4.0"
 }
 
 get_service_stats() {
