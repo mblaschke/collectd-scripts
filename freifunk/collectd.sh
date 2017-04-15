@@ -184,7 +184,7 @@ main() {
 				NODE_JSON=$(cat "${CONF_NODE_JSON_PATH}" | jq -c ".nodes[] | select(.nodeinfo.node_id == \"$NODE_ID\")")
 				NODE_STATS_JSON=$(echo "${NODE_JSON}" | jq -c ".statistics")
 				NODE_NAME=$(echo "${NODE_JSON}" | jq -r ".nodeinfo.hostname")
-				if [[ "$NODE_STATS_JSON" != '{}' ]]; then
+				if [[ -n "$NODE_STATS_JSON" ]] && [[ "$NODE_STATS_JSON" != '{}' ]]; then
 					const_stat "power" 1
 					extract_stat "uptime" "uptime" "to_int"
 					extract_stat "loadavg" "gauge-loadavg" "to_float"
