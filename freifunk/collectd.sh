@@ -15,7 +15,7 @@ CONF_AUTO_UPDATE=1
 CONF_AUTO_UPDATE_AGE=5
 
 # URL for nodes.json
-CONF_NODE_JSON_URL="http://hg.albi.info/json/nodes.json"
+CONF_NODE_JSON_URL="https://hg2.ffs.ovh/json/nodes.json"
 
 # Storage path for nodes.json
 CONF_NODE_JSON_PATH="/dev/shm/ffs-stats-nodes.json"
